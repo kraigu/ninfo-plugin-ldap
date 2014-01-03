@@ -17,17 +17,20 @@ class ldap_plugin(PluginBase):
         ldap_pw     = c['pw']
         server      = c['server']
         dsn         = c['dsn']
+        searchpre   = c['searchpre']
+        searchpost  = c['searchpost']
         ignore_cert = 'ignore_cert' in c
         if ignore_cert:
             ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, 0)
 
         self.l = ldap.initialize(server)
-        username = 'uid=%s,%s' % (ldap_user, dsn)
-        self.l.simple_bind_s(username, ldap_pw)
+        self.l.simple_bind_s(ldap_user, ldap_pw)
         self.dsn = dsn
+        self.searchpre = searchpre
+        self.searchpost = searchpost
 
     def get_info(self, arg):
-        search = "uid=%s" % arg
+        search = '%s=%s%s' % (self.searchpre, arg, self.searchpost)
         res = self.l.search_s(self.dsn, self.ldap.SCOPE_SUBTREE, search)
         if not res:
             return None

@@ -6,7 +6,8 @@ LDAP plugin for ninfo: https://github.com/JustinAzoff/ninfo
 
 Configuration:
 
-```[plugin:ldap]
+```
+[plugin:ldap]
 user   = foo
 pw     = bar
 server = ldaps://ldap.example.com:636

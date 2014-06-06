@@ -17,7 +17,7 @@ class ldap_plugin(PluginBase):
         ldap_pw     = c['pw']
         server      = c['server']
         dsn         = c['dsn']
-        searchpre   = c.get('searchpre', '')
+        searchpre   = c.get('searchpre', 'uid')
         searchpost  = c.get('searchpost', '')
         ignore_cert = 'ignore_cert' in c
         if ignore_cert:

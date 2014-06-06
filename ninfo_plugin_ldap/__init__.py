@@ -17,8 +17,8 @@ class ldap_plugin(PluginBase):
         ldap_pw     = c['pw']
         server      = c['server']
         dsn         = c['dsn']
-        searchpre   = c['searchpre']
-        searchpost  = c['searchpost']
+        searchpre   = c.get('searchpre', '')
+        searchpost  = c.get('searchpost', '')
         ignore_cert = 'ignore_cert' in c
         if ignore_cert:
             ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, 0)

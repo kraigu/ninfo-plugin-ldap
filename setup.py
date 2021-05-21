@@ -7,7 +7,7 @@ setup(name='ninfo-plugin-ldap',
     include_package_data=True,
     install_requires=[
         "ninfo>=0.1.11",
-        "python-ldap"
+        "ldap3",
     ],
     entry_points = {
         'ninfo.plugin': [

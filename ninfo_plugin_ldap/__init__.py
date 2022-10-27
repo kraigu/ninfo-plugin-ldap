@@ -9,7 +9,7 @@ class ldap_plugin(PluginBase):
     title = "LDAP"
     description = "LDAP Lookup"
     cache_timeout = 60 * 60
-    types = ['username']
+    types = ['username', 'hash']
 
     def setup(self):
         config = self.plugin_config

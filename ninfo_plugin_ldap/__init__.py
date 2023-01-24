@@ -21,8 +21,10 @@ class ldap_plugin(PluginBase):
         dsn = config['dsn']
         searchpre = config.get('searchpre', 'uid')
         searchpost = config.get('searchpost', '')
+        ciphers = config.get('ciphers', 'HIGH:!DH:!aNULL')
 
-        self.ldap_server = ldap3.Server(server, get_info=ldap3.ALL)
+        tls_context = ldap3.Tls(ciphers=ciphers)
+        self.ldap_server = ldap3.Server(server, get_info=ldap3.ALL, tls=tls_context)
         self.ldap_conn = ldap3.Connection(self.ldap_server, ldap_user, ldap_pw, auto_bind=True)
         self.dsn = dsn
 

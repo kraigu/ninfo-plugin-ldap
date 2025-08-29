@@ -1,7 +1,7 @@
 ninfo-plugin-ldap
 =================
 
-LDAP plugin for ninfo: https://github.com/JustinAzoff/ninfo
+LDAP plugin for ninfo: https://github.com/ninfo-py/ninfo
 
 
 Configuration:
@@ -18,4 +18,5 @@ and optionally:
 ```
 ignore_cert = true
 fields = list,of,ldap,fields
+field_substitution = list=testing,of=another_rename
 ```

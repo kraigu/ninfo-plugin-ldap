@@ -6,10 +6,8 @@
 %>
 
 %for record in records:
-    %if loop.index != 0:
-
-    %endif
+----------------------------------------
     %for f in [x for x in fields if x in record]:
-${field_substitution.get(f.lower(), f)}  ${record[f]}
+${field_substitution.get(f.lower(), f)}: ${record[f]}
     %endfor
 %endfor

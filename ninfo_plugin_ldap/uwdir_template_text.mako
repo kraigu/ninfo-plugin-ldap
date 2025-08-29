@@ -5,10 +5,8 @@
 %>
 
 %for record in records:
-    %if loop.index != 0:
-
-    %endif
+----------------------------------------
     %for f in [x for x in fields if x in record]:
-${f}  ${record[f]}
+${f}: ${record[f]}
     %endfor
 %endfor

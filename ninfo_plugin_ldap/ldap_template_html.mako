@@ -2,13 +2,14 @@
     fields = ("preferredDisplayName", "eduPersonPrimaryAffiliation", "eduPersonAffiliation", "title", "eduPersonPrimaryOrgUnitDN", "mail", "campusAddress", "telephoneNumber", "uid")
     if fields in plugin_config:
         fields = plugin_config['fields'].split()
+    field_substitution = plugin_config['field_substitution']
 %>
 
 %for record in records:
 <table border="1" cellpadding="1" cellspacing="0">
     %for f in [x for x in fields if x in record]:
 <tr>
-    <td> ${f} </td>
+    <td> ${field_substitution.get(f.lower(), f)} </td>
     <td> ${record[f]} </td>
 </tr>
     %endfor

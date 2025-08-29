@@ -32,7 +32,7 @@ class ldap_plugin(PluginBase):
         searchpre = config.get("searchpre", "uid")
         searchpost = config.get("searchpost", "")
         field_substitution_str = config.get("field_substitution", "")
-        self.field_substitution = (
+        config["field_substitution"] = (
             {
                 k.lower(): v
                 for k, v in (x.split("=") for x in field_substitution_str.split(","))
@@ -40,13 +40,6 @@ class ldap_plugin(PluginBase):
             if field_substitution_str
             else {}
         )
-
-        if field_substitution_str:
-            substituted_fields = [
-                self.field_substitution.get(k.lower(), k)
-                for k in config["fields"].split(" ")
-            ]
-            config["fields"] = " ".join(substituted_fields)
 
         ciphers = config.get("ciphers", "HIGH:!DH:!aNULL")
 
@@ -87,11 +80,7 @@ class ldap_plugin(PluginBase):
                     else:
                         items.append(str(item))
 
-                if attr.lower() in self.field_substitution:
-                    entry_data[self.field_substitution[attr.lower()]] = ", ".join(items)
-
-                else:
-                    entry_data[attr] = ", ".join(items)
+                entry_data[attr] = ", ".join(items)
 
             ret.append(entry_data)
 
